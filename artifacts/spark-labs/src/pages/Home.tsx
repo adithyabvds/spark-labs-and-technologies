@@ -3,6 +3,8 @@ import FloatingPills from "../components/FloatingPills";
 import { useTypewriter } from "../hooks/useTypewriter";
 import { useCountUp } from "../hooks/useCountUp";
 
+const ACULEDGER_URL = "https://spark-aculedger.onrender.com";
+
 interface HomeProps {
   onNavigate: (page: string) => void;
 }
@@ -85,7 +87,7 @@ export default function Home({ onNavigate }: HomeProps) {
         </h1>
 
         <p className="reveal delay" style={{ marginTop: 18, maxWidth: 760, color: "var(--muted)", fontSize: "clamp(1.02rem,2vw,1.2rem)", lineHeight: 1.7 }}>
-          Spark AccuLedger unifies GST workflows, smart billing, analytics, and payment automation into one modern SaaS platform for growing operations.
+          <a href={ACULEDGER_URL} target="_blank" rel="noopener noreferrer">Spark AccuLedger</a> unifies GST workflows, smart billing, analytics, and payment automation into one modern SaaS platform for growing operations.
         </p>
 
         <div className="hero-buttons reveal delay-2">
@@ -95,7 +97,7 @@ export default function Home({ onNavigate }: HomeProps) {
             </svg>
             Explore Products
           </button>
-          <a href="https://multi-tenant-billing-app-w70p3ehv.devinapps.com/" target="_blank" rel="noopener noreferrer" className="btn-secondary">
+          <a href={ACULEDGER_URL} target="_blank" rel="noopener noreferrer" className="btn-secondary">
             Launch Platform →
           </a>
         </div>
@@ -119,12 +121,14 @@ export default function Home({ onNavigate }: HomeProps) {
           <div className="showcase-inner">
             <div className="showcase-left">
               <span className="product-badge">Live Platform</span>
-              <h2 className="product-hero-title">Spark AccuLedger</h2>
+              <h2 className="product-hero-title">
+                <a href={ACULEDGER_URL} target="_blank" rel="noopener noreferrer">Spark AccuLedger</a>
+              </h2>
               <p className="product-hero-desc">
                 Enterprise Smart Billing &amp; Business Infrastructure Platform integrating GST, analytics, payments and automation.
               </p>
               <div className="product-actions">
-                <a href="https://multi-tenant-billing-app-w70p3ehv.devinapps.com/" target="_blank" rel="noopener noreferrer" className="btn-primary">
+                <a href={ACULEDGER_URL} target="_blank" rel="noopener noreferrer" className="btn-primary">
                   Launch Platform
                 </a>
                 <button className="btn-secondary" onClick={() => onNavigate("products")}>Learn More</button>
@@ -134,7 +138,7 @@ export default function Home({ onNavigate }: HomeProps) {
               <div className="mini-dashboard">
                 <div className="dash-header">
                   <span className="dash-dot red" /><span className="dash-dot yellow" /><span className="dash-dot green" />
-                  <span className="dash-title">AccuLedger · Dashboard</span>
+                  <a className="dash-title" href={ACULEDGER_URL} target="_blank" rel="noopener noreferrer">AccuLedger · Dashboard</a>
                 </div>
                 <div className="dash-stats">
                   <div className="dash-stat">

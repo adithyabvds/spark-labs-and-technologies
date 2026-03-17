@@ -1,5 +1,7 @@
 import { useEffect } from "react";
 
+const ACULEDGER_URL = "https://spark-aculedger.onrender.com";
+
 export default function Docs() {
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -29,7 +31,7 @@ export default function Docs() {
       <section className="hero small-hero">
         <h1 className="reveal">Documentation</h1>
         <p className="reveal delay">
-          Everything you need to get started with Spark AccuLedger — guides, API references, and integration walkthroughs.
+          Everything you need to get started with <a href={ACULEDGER_URL} target="_blank" rel="noopener noreferrer">Spark AccuLedger</a> — guides, API references, and integration walkthroughs.
         </p>
       </section>
 
@@ -61,7 +63,7 @@ export default function Docs() {
       <section className="section" style={{ paddingTop: "0" }}>
         <h2 className="reveal">API Reference</h2>
         <p className="section-intro reveal delay">
-          Integrate Spark AccuLedger with your existing systems using our RESTful API. Full OpenAPI specification available.
+          Integrate <a href={ACULEDGER_URL} target="_blank" rel="noopener noreferrer">Spark AccuLedger</a> with your existing systems using our RESTful API. Full OpenAPI specification available.
         </p>
         <div className="docs-grid">
           <div className="doc-card reveal">
@@ -86,7 +88,7 @@ export default function Docs() {
       <section className="section" style={{ paddingTop: "0" }}>
         <h2 className="reveal">Integrations</h2>
         <p className="section-intro reveal delay">
-          Connect Spark AccuLedger with the tools your team already uses.
+          Connect <a href={ACULEDGER_URL} target="_blank" rel="noopener noreferrer">Spark AccuLedger</a> with the tools your team already uses.
         </p>
         <div className="docs-grid">
           <div className="doc-card reveal">

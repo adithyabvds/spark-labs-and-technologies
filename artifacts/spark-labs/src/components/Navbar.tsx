@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import SparkLogo from "./SparkLogo";
 
+const ACULEDGER_URL = "https://spark-aculedger.onrender.com";
+
 interface NavbarProps {
   currentPage: string;
   onNavigate: (page: string) => void;
@@ -32,7 +34,7 @@ export default function Navbar({ currentPage, onNavigate }: NavbarProps) {
             </li>
             <li>
               <a
-                href="https://multi-tenant-billing-app-w70p3ehv.devinapps.com/"
+                href={ACULEDGER_URL}
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -48,7 +50,7 @@ export default function Navbar({ currentPage, onNavigate }: NavbarProps) {
           </ul>
           <a
             className="nav-launch-btn"
-            href="https://multi-tenant-billing-app-w70p3ehv.devinapps.com/"
+            href={ACULEDGER_URL}
             target="_blank"
             rel="noopener noreferrer"
           >

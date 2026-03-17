@@ -1,5 +1,7 @@
 import { useEffect } from "react";
 
+const ACULEDGER_URL = "https://spark-aculedger.onrender.com";
+
 interface ProductsProps {
   onNavigate: (page: string) => void;
 }
@@ -52,12 +54,14 @@ export default function Products({ onNavigate }: ProductsProps) {
       <section className="product-showcase" style={{ paddingBottom: "0" }}>
         <div className="section-gradient product-hero-card reveal">
           <span className="product-badge">Live Platform</span>
-          <h2 className="product-hero-title">Spark AccuLedger</h2>
+          <h2 className="product-hero-title">
+            <a href={ACULEDGER_URL} target="_blank" rel="noopener noreferrer">Spark AccuLedger</a>
+          </h2>
           <p className="product-hero-desc">
             Enterprise Smart Billing &amp; Business Infrastructure Platform integrating GST, analytics, payments and automation. Built for businesses that need a unified system to manage billing, inventory, and compliance workflows.
           </p>
           <div className="product-actions">
-            <a href="https://multi-tenant-billing-app-w70p3ehv.devinapps.com/" target="_blank" rel="noopener noreferrer" className="btn-primary">
+            <a href={ACULEDGER_URL} target="_blank" rel="noopener noreferrer" className="btn-primary">
               Launch Platform
             </a>
             <button className="btn-secondary" onClick={() => onNavigate("contact")}>
