@@ -1,10 +1,13 @@
 services:
   - type: web
-    name: spark-labs
-    runtime: node
-    rootDir: .
-    buildCommand: corepack pnpm run render:build
-    startCommand: corepack pnpm run render:start
+    name: spark-labs-technologies
+    runtime: static
+    buildCommand: pnpm install && pnpm build
+    staticPublishPath: ./dist
     envVars:
       - key: BASE_PATH
         value: /
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
