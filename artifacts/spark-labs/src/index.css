@@ -929,6 +929,269 @@ body {
   letter-spacing: 0.3px;
 }
 
+/* ─── SCROLL PROGRESS ──────────────────────── */
+.scroll-progress-track {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  z-index: 9999;
+  background: rgba(255,255,255,0.05);
+}
+
+.scroll-progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, var(--brand-a), var(--brand-b), var(--brand-c));
+  background-size: 200% auto;
+  animation: gradShift 2s linear infinite;
+  box-shadow: 0 0 10px rgba(66, 212, 255, 0.7), 0 0 24px rgba(95, 111, 255, 0.4);
+  transition: width 0.08s linear;
+  border-radius: 0 2px 2px 0;
+}
+
+/* ─── MOUSE SPOTLIGHT ───────────────────────── */
+.mouse-spotlight {
+  position: fixed;
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(66, 212, 255, 0.055) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 1;
+  transform: translate(-50%, -50%);
+  transition: left 0.06s linear, top 0.06s linear;
+  mix-blend-mode: screen;
+}
+
+/* ─── PAGE TRANSITIONS ──────────────────────── */
+.page-wrap {
+  will-change: opacity, transform;
+}
+
+.page-enter {
+  animation: pageIn 0.32s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.page-exit {
+  animation: pageOut 0.28s ease-in forwards;
+  pointer-events: none;
+}
+
+@keyframes pageIn {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pageOut {
+  from { opacity: 1; transform: translateY(0); }
+  to   { opacity: 0; transform: translateY(-12px); }
+}
+
+/* ─── EYEBROW ───────────────────────────────── */
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 20px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(66, 212, 255, 0.3);
+  background: rgba(66, 212, 255, 0.07);
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--brand-a);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  animation: fadeUp 0.6s ease forwards;
+}
+
+.eyebrow-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--brand-a);
+  box-shadow: 0 0 6px rgba(66, 212, 255, 0.9);
+  animation: dotPulse 1.6s ease-in-out infinite;
+}
+
+/* ─── TYPEWRITER ────────────────────────────── */
+.typewriter-text {
+  background: linear-gradient(135deg, #ffffff 0%, #c8dfff 35%, var(--brand-a) 65%, var(--brand-c) 100%);
+  background-size: 300% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradShift 6s ease-in-out infinite;
+}
+
+.typewriter-cursor {
+  display: inline-block;
+  -webkit-text-fill-color: var(--brand-a);
+  color: var(--brand-a);
+  animation: cursorBlink 0.75s step-end infinite;
+  font-weight: 300;
+  margin-left: 2px;
+}
+
+@keyframes cursorBlink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+/* ─── FLOATING PILLS ────────────────────────── */
+.floating-pills-wrap {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.floating-pill {
+  position: absolute;
+  padding: 7px 14px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  color: rgba(200, 232, 255, 0.75);
+  background: rgba(66, 212, 255, 0.07);
+  border: 1px solid rgba(66, 212, 255, 0.2);
+  backdrop-filter: blur(8px);
+  white-space: nowrap;
+  animation: pillFloat linear infinite;
+}
+
+@keyframes pillFloat {
+  0%, 100% { transform: translateY(0px); opacity: 0.55; }
+  25%       { transform: translateY(-10px); opacity: 0.8; }
+  50%       { transform: translateY(-4px); opacity: 0.65; }
+  75%       { transform: translateY(-14px); opacity: 0.75; }
+}
+
+/* ─── CARD ICON ─────────────────────────────── */
+.card-icon {
+  font-size: 1.8rem;
+  margin-bottom: 14px;
+  display: block;
+  filter: drop-shadow(0 0 8px rgba(66, 212, 255, 0.4));
+}
+
+/* ─── MINI DASHBOARD ────────────────────────── */
+@keyframes barRise {
+  from { height: 0; }
+  to   { height: var(--bar-h); }
+}
+
+.showcase-inner {
+  display: flex;
+  gap: 36px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.showcase-left {
+  flex: 1 1 340px;
+  min-width: 0;
+}
+
+.showcase-right {
+  flex: 0 0 280px;
+  min-width: 220px;
+}
+
+.mini-dashboard {
+  border-radius: 14px;
+  border: 1px solid rgba(66, 212, 255, 0.18);
+  background: rgba(10, 15, 40, 0.7);
+  backdrop-filter: blur(16px);
+  overflow: hidden;
+  box-shadow: 0 16px 48px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.06);
+}
+
+.dash-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 14px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  background: rgba(255,255,255,0.03);
+}
+
+.dash-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+}
+.dash-dot.red    { background: #ff5f57; }
+.dash-dot.yellow { background: #ffbd2e; }
+.dash-dot.green  { background: #28ca41; }
+
+.dash-title {
+  font-size: 0.68rem;
+  color: var(--muted);
+  font-weight: 500;
+  margin-left: 4px;
+  letter-spacing: 0.02em;
+}
+
+.dash-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: rgba(255,255,255,0.05);
+}
+
+.dash-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: 12px 10px;
+  background: rgba(8, 13, 36, 0.6);
+}
+
+.dash-stat-label {
+  font-size: 0.62rem;
+  color: var(--muted);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.dash-stat-val {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--text);
+  font-family: "Outfit", monospace;
+  white-space: nowrap;
+}
+
+.dash-stat-trend {
+  font-size: 0.65rem;
+  font-weight: 600;
+}
+.dash-stat-trend.up      { color: #28ca41; }
+.dash-stat-trend.neutral { color: var(--brand-a); }
+
+.dash-bar-row {
+  display: flex;
+  align-items: flex-end;
+  gap: 5px;
+  padding: 12px 14px 10px;
+  height: 70px;
+}
+
+.dash-bar {
+  flex: 1;
+  border-radius: 4px 4px 0 0;
+  background: linear-gradient(180deg, var(--brand-a), var(--brand-b));
+  height: var(--bar-h);
+  opacity: 0.8;
+  animation: barRise 1s cubic-bezier(0.22,1,0.36,1) both;
+  box-shadow: 0 0 8px rgba(66, 212, 255, 0.3);
+}
+
 /* ─── RESPONSIVE ────────────────────────────── */
 @media (max-width: 768px) {
   .nav-shell {
