@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: spark-labs
+    runtime: node
+    rootDir: .
+    buildCommand: corepack pnpm run render:build
+    startCommand: corepack pnpm run render:start
+    envVars:
+      - key: BASE_PATH
+        value: /
