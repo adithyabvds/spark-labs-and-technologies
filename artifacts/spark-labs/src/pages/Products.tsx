@@ -4,29 +4,41 @@ interface ProductsProps {
   onNavigate: (page: string) => void;
 }
 
-export default function Products({ onNavigate }: ProductsProps) {
+function useReveal() {
   useEffect(() => {
-    window.scrollTo(0, 0);
-    const revealElements = document.querySelectorAll(".reveal");
-
-    if ("IntersectionObserver" in window) {
-      const observer = new IntersectionObserver(
-        (entries, obs) => {
-          entries.forEach((entry) => {
-            if (!entry.isIntersecting) return;
-            entry.target.classList.add("active");
-            obs.unobserve(entry.target);
-          });
-        },
-        { threshold: 0.15, rootMargin: "0px 0px -30px 0px" }
-      );
-
-      revealElements.forEach((el) => observer.observe(el));
-      return () => observer.disconnect();
-    } else {
-      revealElements.forEach((el) => el.classList.add("active"));
+    const els = document.querySelectorAll(".reveal, .reveal-left");
+    if (!("IntersectionObserver" in window)) {
+      els.forEach((el) => el.classList.add("active"));
+      return;
     }
-  }, []);
+    const observer = new IntersectionObserver(
+      (entries, obs) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add("active");
+          obs.unobserve(entry.target);
+        });
+      },
+      { threshold: 0.12, rootMargin: "0px 0px -24px 0px" }
+    );
+    els.forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
+  });
+}
+
+const capabilities = [
+  { tag: "Billing", title: "Smart Invoice Engine", desc: "Generate GST-compliant invoices, manage billing cycles, and automate collections with intelligent retry logic." },
+  { tag: "Compliance", title: "GST Filing & Reports", desc: "Auto-compute GSTR-1, GSTR-3B and other returns. Maintain audit trails and stay compliant without manual effort." },
+  { tag: "Inventory", title: "Stock & Warehouse", desc: "Track inventory across locations in real time, set reorder levels, and link stock movements to billing." },
+  { tag: "Analytics", title: "Business Intelligence", desc: "Interactive dashboards for revenue trends, cashflow forecasting, and operational KPIs tailored for decision makers." },
+  { tag: "Payments", title: "Payment Gateway", desc: "Accept payments via UPI, cards, and net banking. Reconcile automatically and track outstanding balances." },
+  { tag: "Multi-Tenant", title: "Enterprise Architecture", desc: "Manage multiple business entities, branches, or clients from a single admin interface with role-based access." },
+];
+
+const delays = ["delay", "delay-2", "delay-3", "delay-4", "delay-5", "delay"];
+
+export default function Products({ onNavigate }: ProductsProps) {
+  useReveal();
 
   return (
     <>
@@ -45,12 +57,7 @@ export default function Products({ onNavigate }: ProductsProps) {
             Enterprise Smart Billing &amp; Business Infrastructure Platform integrating GST, analytics, payments and automation. Built for businesses that need a unified system to manage billing, inventory, and compliance workflows.
           </p>
           <div className="product-actions">
-            <a
-              href="https://multi-tenant-billing-app-w70p3ehv.devinapps.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-primary"
-            >
+            <a href="https://multi-tenant-billing-app-w70p3ehv.devinapps.com/" target="_blank" rel="noopener noreferrer" className="btn-primary">
               Launch Platform
             </a>
             <button className="btn-secondary" onClick={() => onNavigate("contact")}>
@@ -58,42 +65,14 @@ export default function Products({ onNavigate }: ProductsProps) {
             </button>
           </div>
           <ul className="feature-list">
-            <li>
-              <svg className="feature-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <path d="M20 6L9 17l-5-5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-              Smart Billing
-            </li>
-            <li>
-              <svg className="feature-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <path d="M20 6L9 17l-5-5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-              GST Automation
-            </li>
-            <li>
-              <svg className="feature-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <path d="M20 6L9 17l-5-5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-              Inventory Management
-            </li>
-            <li>
-              <svg className="feature-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <path d="M20 6L9 17l-5-5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-              Business Analytics
-            </li>
-            <li>
-              <svg className="feature-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <path d="M20 6L9 17l-5-5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-              Payment Automation
-            </li>
-            <li>
-              <svg className="feature-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <path d="M20 6L9 17l-5-5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-              Multi-Tenant Architecture
-            </li>
+            {["Smart Billing", "GST Automation", "Inventory Management", "Business Analytics", "Payment Automation", "Multi-Tenant Architecture"].map((f) => (
+              <li key={f}>
+                <svg className="feature-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M20 6L9 17l-5-5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+                {f}
+              </li>
+            ))}
           </ul>
         </div>
       </section>
@@ -104,36 +83,13 @@ export default function Products({ onNavigate }: ProductsProps) {
           Everything your business needs to manage finance, compliance, and operations — in one unified platform.
         </p>
         <div className="product-grid">
-          <article className="product-card reveal">
-            <div className="product-tag">Billing</div>
-            <h3>Smart Invoice Engine</h3>
-            <p>Generate GST-compliant invoices, manage billing cycles, and automate collections with intelligent retry logic.</p>
-          </article>
-          <article className="product-card reveal">
-            <div className="product-tag">Compliance</div>
-            <h3>GST Filing & Reports</h3>
-            <p>Auto-compute GSTR-1, GSTR-3B and other returns. Maintain audit trails and stay compliant without manual effort.</p>
-          </article>
-          <article className="product-card reveal">
-            <div className="product-tag">Inventory</div>
-            <h3>Stock & Warehouse</h3>
-            <p>Track inventory across locations in real time, set reorder levels, and link stock movements to billing.</p>
-          </article>
-          <article className="product-card reveal">
-            <div className="product-tag">Analytics</div>
-            <h3>Business Intelligence</h3>
-            <p>Interactive dashboards for revenue trends, cashflow forecasting, and operational KPIs tailored for decision makers.</p>
-          </article>
-          <article className="product-card reveal">
-            <div className="product-tag">Payments</div>
-            <h3>Payment Gateway</h3>
-            <p>Accept payments via UPI, cards, and net banking. Reconcile automatically and track outstanding balances.</p>
-          </article>
-          <article className="product-card reveal">
-            <div className="product-tag">Multi-Tenant</div>
-            <h3>Enterprise Architecture</h3>
-            <p>Manage multiple business entities, branches, or clients from a single admin interface with role-based access.</p>
-          </article>
+          {capabilities.map(({ tag, title, desc }, i) => (
+            <article className={`product-card reveal ${delays[i]}`} key={title}>
+              <div className="product-tag">{tag}</div>
+              <h3>{title}</h3>
+              <p>{desc}</p>
+            </article>
+          ))}
         </div>
       </section>
     </>

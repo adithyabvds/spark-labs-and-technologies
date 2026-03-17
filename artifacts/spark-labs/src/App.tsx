@@ -1,5 +1,7 @@
 import { useState } from "react";
 import Navbar from "./components/Navbar";
+import AuroraBg from "./components/AuroraBg";
+import ParticleField from "./components/ParticleField";
 import Home from "./pages/Home";
 import Products from "./pages/Products";
 import Docs from "./pages/Docs";
@@ -30,7 +32,8 @@ export default function App() {
 
   return (
     <>
-      <div className="animated-bg" aria-hidden="true" />
+      <AuroraBg />
+      <ParticleField />
       <Navbar currentPage={currentPage} onNavigate={handleNavigate} />
       <main>{renderPage()}</main>
       <footer className="footer">
