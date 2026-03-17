@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@600;700;800&display=swap");
 
 /* ─── CSS VARIABLES ─────────────────────────── */
 :root {
@@ -161,6 +161,84 @@ body {
   animation: gridFade 8s ease-in-out infinite;
 }
 
+/* ─── SPARK LOGO ────────────────────────────── */
+@keyframes iconSpin {
+  0%   { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes iconGlow {
+  0%, 100% { filter: drop-shadow(0 0 6px rgba(66, 212, 255, 0.5)); }
+  50%       { filter: drop-shadow(0 0 14px rgba(143, 89, 255, 0.7)); }
+}
+
+@keyframes boltFlash {
+  0%, 85%, 100% { opacity: 1; }
+  90%            { opacity: 0.5; }
+  95%            { opacity: 1; }
+}
+
+.spark-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  user-select: none;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.spark-icon {
+  animation: iconGlow 3.5s ease-in-out infinite;
+  transition: transform 0.4s cubic-bezier(.34,1.56,.64,1);
+  flex-shrink: 0;
+}
+
+.spark-logo:hover .spark-icon {
+  transform: scale(1.12) rotate(10deg);
+}
+
+.spark-wordmark {
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+  gap: 2px;
+}
+
+.spark-wordmark-main {
+  font-family: "Outfit", "Inter", sans-serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  display: flex;
+  align-items: baseline;
+  gap: 0;
+}
+
+.spark-word-spark {
+  background: linear-gradient(90deg, #ffffff, var(--brand-a), #ffffff);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradShift 4s linear infinite;
+  font-weight: 800;
+}
+
+.spark-word-labs {
+  color: rgba(245, 248, 255, 0.78);
+  font-weight: 600;
+}
+
+.spark-wordmark-sub {
+  font-family: "Inter", sans-serif;
+  font-size: 0.62rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  color: rgba(174, 185, 214, 0.65);
+  text-transform: uppercase;
+}
+
 /* ─── NAVBAR ────────────────────────────────── */
 .navbar {
   position: sticky;
@@ -189,20 +267,6 @@ body {
   gap: 24px;
 }
 
-.logo {
-  text-decoration: none;
-  font-size: 1.08rem;
-  font-weight: 700;
-  letter-spacing: 0.4px;
-  white-space: nowrap;
-  cursor: pointer;
-  background: linear-gradient(90deg, #ffffff, var(--brand-a), #ffffff);
-  background-size: 200% auto;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: gradShift 5s linear infinite, logoPulse 4s ease-in-out infinite;
-}
 
 .nav-main {
   display: flex;

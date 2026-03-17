@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import SparkLogo from "./SparkLogo";
 
 interface NavbarProps {
   currentPage: string;
@@ -20,9 +21,7 @@ export default function Navbar({ currentPage, onNavigate }: NavbarProps) {
   return (
     <nav className={`navbar${scrolled ? " scrolled" : ""}`}>
       <div className="nav-shell">
-        <span className="logo" onClick={() => onNavigate("home")}>
-          Spark Labs & Technologies
-        </span>
+        <SparkLogo onClick={() => onNavigate("home")} />
         <div className="nav-main">
           <ul className="nav-links">
             <li>
